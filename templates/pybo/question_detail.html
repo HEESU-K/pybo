@@ -69,7 +69,7 @@
                    class="recommend btn btn-sm btn-outline-secondary"> 추천
                     <span class="badge rounded-pill bg-success">{{answer.voter.count}}</span>
                 </a>
-                <a href="javascript:void(0)" data-uri="{% url 'pybo:answer_oppose' question.id %}"
+                <a href="javascript:void(0)" data-uri="{% url 'pybo:answer_oppose' answer.id %}"
                class="unlike btn btn-sm btn-outline-secondary"> 반대
                 <span class="badge rounded-pill bg-success">{{answer.oppose.count}}</span>
                  </a>
