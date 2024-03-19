@@ -66,9 +66,13 @@
             </div>
             <div class="my-3">
                 <a href="javascript:void(0)" data-uri="{% url 'pybo:answer_vote' answer.id  %}"
-                   class="recommend btn btn-sm btn-outline-secondary"> 추천
+                   class="unlike btn btn-sm btn-outline-secondary"> 추천
                     <span class="badge rounded-pill bg-success">{{answer.voter.count}}</span>
                 </a>
+                <a href="javascript:void(0)" data-uri="{% url 'pybo:answer_oppose' question.id %}"
+               class="unlike btn btn-sm btn-outline-secondary"> 반대
+                <span class="badge rounded-pill bg-success">{{answer.oppose.count}}</span>
+                 </a>
                 {% if request.user == answer.author %}
                 <a href="{% url 'pybo:answer_modify' answer.id %}"
                    class="btn btn-sm btn-outline-secondary">수정</a>
@@ -122,6 +126,15 @@ const recommend_elements = document.getElementsByClassName("recommend");
 Array.from(recommend_elements).forEach(function (element){
     element.addEventListener('click', function (){
         if(confirm("정말로 추천하시겠습니까?")){
+            location.href = this.dataset.uri;
+        };
+    })
+});
+
+const unlike_elements = document.getElementsByClassName("unlike");
+Array.from(unlike_elements).forEach(function (element){
+    element.addEventListener('click', function (){
+        if(confirm("정말로 반대하시겠습니까?")){
             location.href = this.dataset.uri;
         };
     })

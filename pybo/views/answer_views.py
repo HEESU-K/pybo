@@ -62,3 +62,15 @@ def answer_vote(request, answer_id):
     else:
         answer.voter.add(request.user)
     return redirect('{}#answer_{}'.format(resolve_url('pybo:detail', question_id=answer.question.id), answer.id))
+
+
+@login_required(login_url='common:login')
+def answer_oppose(request, answer_id):
+    answer = get_object_or_404(Answer, pk=answer_id)
+    if request.user == answer.author:
+        messages.error(request, '본인이 작성한 글은 반대할 수 없습니다.')
+    else:
+        answer.oppose.add(request.user)
+    return redirect('{}#answer_{}'.format(resolve_url('pybo:detail', question_id=answer.question.id), answer.id))
+        
+        
