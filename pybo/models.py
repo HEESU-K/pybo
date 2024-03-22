@@ -9,6 +9,7 @@ class Question(models.Model):
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField(null=True, blank=True)
     voter = models.ManyToManyField(User, related_name='voter_question')
+    oppose = models.ManyToManyField(User, related_name='oppose_question')
 
     def __str__(self):
         return self.subject
@@ -21,4 +22,5 @@ class Answer(models.Model):
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField(null=True, blank=True)
     voter = models.ManyToManyField(User, related_name='voter_answer')
+    oppose = models.ManyToManyField(User, related_name='oppose_answer')
 
